@@ -49,4 +49,4 @@ Compress-Archive -Path (Join-Path $outDir "*") -DestinationPath $zip -Force
 Remove-Item $outDir -Recurse -Force
 Write-Host ""
 Write-Host ("已生成: " + $zip)
-Write-Host "把这个文件发给给你机器人的人即可。"
+Write-Host "把这个文件贴到 GitHub Issue，或发给帮你部署的人即可。"

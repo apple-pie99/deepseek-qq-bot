@@ -33,7 +33,7 @@ QQ 机器人这件事，从来不是"调个 API"那么简单：你得有一个�
 | 能力 | 状态 | 说明 |
 |---|---|---|
 | 群里 @ 它，按人设回复 | ✅ 默认开启 | 必须是 QQ 真提及，手打 `@名字` 不算，见[常见问题](docs/常见问题.md) |
-| 私聊 | ✅ 默认开启 | |
+| 私聊 | ✅ 默认开启 | 与群聊上下文独立 |
 | 认出是谁在说话 | ✅ 推荐开启 | 面板里把 `identifier` 打开，能拿到昵称并注入上下文 |
 | 群聊上下文记忆 | ✅ 推荐开启 | 只覆盖群聊，私聊不在内；上限可调到 700 条 |
 | 主动插话 | ⚙️ 需开启 | 面板里 `active_reply`，概率建议 0.2，太高会像刷屏机器人 |
@@ -51,7 +51,7 @@ flowchart LR
     N -- "ws://127.0.0.1:6199/ws<br/>Authorization: Bearer &lt;token&gt;" --> A[AstrBot<br/>OneBot v11 服务端]
     A -- "https://api.deepseek.com/v1" --> D[DeepSeek API]
     A --- P[管理面板<br/>127.0.0.1:6185]
-    A --- S[(data/data_v4.db<br/>personas 表)]
+    A --- S[(data_v4.db<br/>personas 表)]
 ```
 
 | 端口 | 谁在听 | 用途 |
