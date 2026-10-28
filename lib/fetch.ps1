@@ -24,13 +24,23 @@ $proxyArg = @()
 $direct = Probe
 if ($direct -ne "200") {
     if ($NoProxy) { Say "直连失败且指定了 -NoProxy，退出。"; exit 3 }
-    if ([string]::IsNullOrWhiteSpace($ProxyUrl)) { $ProxyUrl = "http://127.0.0.1:7890" }
-    $viaProxy = & curl.exe -s -o NUL -w "%{http_code}" --max-time 10 -x $ProxyUrl https://api.github.com
-    if ($viaProxy -eq "200") { $proxyArg = @("-x", $ProxyUrl); Say ("GitHub 直连不通，改用代理: " + $ProxyUrl) }
-    else {
-        Say "GitHub 直连和代理都不通。"
-        Say "请先打开 Clash Verge（混合端口一般是 7890），再重新运行本脚本。"
-        Say "如果你的代理端口不是 7890，右键本文件编辑，把 ProxyUrl 改成实际端口。"
+    $candidates = @()
+    if (-not [string]::IsNullOrWhiteSpace($ProxyUrl)) { $candidates += $ProxyUrl }
+    $candidates += @("http://127.0.0.1:7890", "http://127.0.0.1:7897", "http://127.0.0.1:10809", "http://127.0.0.1:1080")
+    $chosen = $null
+    foreach ($c in $candidates) {
+        $code = & curl.exe -s -o NUL -w "%{http_code}" --max-time 8 -x $c https://api.github.com
+        if ($code -eq "200") { $chosen = $c; break }
+    }
+    if ($chosen) {
+        $ProxyUrl = $chosen
+        $proxyArg = @("-x", $ProxyUrl)
+        Say ("GitHub 直连不通，改用代理: " + $ProxyUrl)
+    } else {
+        Say "GitHub 直连和常见代理端口都不通（试过 7890 / 7897 / 10809 / 1080）。"
+        Say "请先打开你的代理软件，确认它的 HTTP 或混合端口，然后编辑 installer\下载依赖.bat，在最后一行加："
+        Say "  -ProxyUrl ""http://127.0.0.1:你的端口"""
+        Say "（也可以用 -NoProxy 强制直连）"
         exit 4
     }
 } else { Say "GitHub 直连正常。" }

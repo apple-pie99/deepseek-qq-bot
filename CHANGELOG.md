@@ -9,7 +9,7 @@
 ### 新增
 
 - `installer/下载依赖.bat` + `lib/fetch.ps1`：下载 AstrBot 4.29.1 便携版（固定 URL 与 181,677,433 字节校验）
-  与 NapCat 最新 Shell 包，带直连/代理探测（默认 7890）。
+  与 NapCat 最新 Shell 包，带直连探测与常见代理端口自动试探（7890 / 7897 / 10809 / 1080）。
 - `lib/wizard.ps1`（`2_配置向导.bat`）：一次交互完成
   - 写入 OneBot v11 反向 WebSocket 平台（端口 6199，随机 token）
   - 写入 DeepSeek 模型来源（`provider_sources`，Key 存为数组）
