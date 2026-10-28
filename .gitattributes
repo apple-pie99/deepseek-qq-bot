@@ -1,0 +1,17 @@
+# 统一换行符：仓库里存 LF，Windows 上检出 bat/ps1 用 CRLF
+* text=auto
+
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+*.ps1  text eol=crlf
+*.psm1 text eol=crlf
+*.txt  text eol=crlf
+
+*.py   text eol=lf
+*.md   text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+
+# 避免 Windows 上把中文文件名显示成转义序列
+# git config core.quotepath false

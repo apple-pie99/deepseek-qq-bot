@@ -1,0 +1,9 @@
+{
+  "id": "deepseek-chat",
+  "type": "openai_chat_completion",
+  "provider_type": "chat_completion",
+  "provider_source_id": "deepseek",
+  "model": "deepseek-chat",
+  "enable": true,
+  "max_context_tokens": 0
+}
