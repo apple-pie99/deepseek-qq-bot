@@ -107,7 +107,8 @@ Access Token:        astrbot-xxxxxxxxxxxxxxxxxxxxxxxx
 在群里真 @ 它，说句话。1–3 秒内有回复就通了。不行看 [常见问题](docs/常见问题.md)。
 
 **可选｜给它一个角色**
-默认它是个没有性格的通用助手。想要人设：[docs/人设指南.md](docs/人设指南.md)。
+默认它是个没有性格的通用助手。想要人设：照着 [`preset/persona/`](preset/persona/README.md) 里的卡片填，
+另存为 `preset\persona\_我的设定.md`，重跑一次向导；方法论与温度实测见 [docs/人设指南.md](docs/人设指南.md)。
 
 ## 目录结构
 
@@ -128,7 +129,7 @@ deepseek-qq-bot/
 │  └─ pack.ps1             打成可分发的 zip
 ├─ preset/
 │  ├─ astrbot/             平台、模型来源、模型条目三份 JSON 模板
-│  ├─ persona/             空白设定、填写模板、示例人设（林小满）
+│  ├─ persona/             填法说明、空白卡、完整模板、示例人设（林小满）
 │  └─ worldbook/           世界书格式说明与示例 yaml
 ├─ 诊断/
 │  └─ 收集日志.bat         生成脱敏诊断 zip
